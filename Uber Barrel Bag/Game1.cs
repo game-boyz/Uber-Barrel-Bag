@@ -11,6 +11,9 @@ namespace Uber_Barrel_Bag
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        // Character Vars
+        private Texture2D player;
         
         public Game1()
         {
@@ -41,6 +44,7 @@ namespace Uber_Barrel_Bag
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            player = Content.Load<Texture2D>("player");
         }
 
         /// <summary>
@@ -73,9 +77,12 @@ namespace Uber_Barrel_Bag
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.White);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            spriteBatch.Draw(player, new Vector2(200, 200), Color.White);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
