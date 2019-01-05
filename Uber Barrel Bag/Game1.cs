@@ -13,7 +13,7 @@ namespace Uber_Barrel_Bag {
 
         // Character Vars
         private Texture2D playerSprite;
-        private Sprite player;
+        private Player player;
 
         public Game1() {
             graphics = new GraphicsDeviceManager(this);
@@ -42,7 +42,7 @@ namespace Uber_Barrel_Bag {
 
             // TODO: use this.Content to load your game content here
             playerSprite = Content.Load<Texture2D>("player");
-            player = new Sprite(playerSprite, 4, 8);
+            player = new Player(400, 400, new Sprite(playerSprite, 4, 8));
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Uber_Barrel_Bag {
             GraphicsDevice.Clear(Color.White);
 
             // TODO: Add your drawing code here
-            player.Draw(spriteBatch, new Vector2(400f, 400f));
+            player.Draw(spriteBatch);
 
             base.Draw(gameTime);
         }

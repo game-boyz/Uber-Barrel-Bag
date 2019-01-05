@@ -9,6 +9,11 @@ namespace Uber_Barrel_Bag.type {
             init(name, frames);
         }
 
+        public Animation() {
+            Name = "";
+            Frames = new Vector2();
+        }
+
         private void init(string name, Vector2 frames) {
             Name = name;
             Frames = frames;

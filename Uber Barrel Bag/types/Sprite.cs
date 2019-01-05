@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using System.Collections;
 using Uber_Barrel_Bag.type;
+using System;
 
 /// <summary>
 /// 
@@ -54,21 +55,24 @@ namespace Uber_Barrel_Bag.type {
             Rows = rows;
             Columns = columns;
             currentFrame = 0;
-            startFrame = 0;
-            endFrame = 0;
             totalFrames = Rows * Columns;
-            Loop = true;
+            startFrame = 0;
+            endFrame = totalFrames;
+            Loop = loop;
             Animations = new Hashtable();
+            currentAnimation = new Animation();
         }
 
         /// <summary>
         /// Increment the current sprite frame, loop if looping is enabled
         /// </summary>
         public void Update() {
-            if (currentFrame < totalFrames || currentFrame < endFrame) {
+            if (currentFrame < endFrame) {
                 currentFrame++;
+                Console.WriteLine("Incrementing frame");
             }
             else if (Loop) {
+                Console.WriteLine("Restarting frames");
                 currentFrame = startFrame;
             }
         }
@@ -86,7 +90,8 @@ namespace Uber_Barrel_Bag.type {
         /// </summary>
         /// <param name="animation">Name of the animation you wish to play</param>
         public void Play(string animation) {
-            if (Animations.ContainsKey(animation)) {
+            if (Animations.ContainsKey(animation) && currentAnimation.Name != animation) {
+                Console.WriteLine("Playing animation");
                 currentAnimation = (Animation)Animations[animation];
                 startFrame = (int)currentAnimation.Frames.X;
                 endFrame = (int)currentAnimation.Frames.Y;
